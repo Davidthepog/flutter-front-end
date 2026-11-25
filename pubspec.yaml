@@ -12,6 +12,7 @@ dependencies:
   http: ^1.6.0
   flutter_form_builder: ^11.0.0
   form_builder_validators: ^11.3.0
+  material_ui: ^1.11.1
 
 dev_dependencies:
   flutter_test:
