@@ -12,10 +12,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  ApiHandler apiHandler = ApiHandler();
+  final ApiHandler _apiHandler = ApiHandler();
   late List<OutputUtenzaDto> data = [];
   void getData() async {
-    data = await apiHandler.getUserData();
+    data = await _apiHandler.getUserData();
     setState(() {});
   }
 
