@@ -1,9 +1,9 @@
 // import 'package:flutter/material.dart';
-import 'package:flutter_application_1/user_card.dart';
+import 'package:flutter_application_1/features/users/widgets/user_card.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:flutter_application_1/api_handler.dart';
+import 'package:flutter_application_1/data/services/api_handler.dart';
 // import 'package:flutter_application_1/model.dart';
-import 'package:flutter_application_1/models/output_utenza_dto.dart';
+import 'package:flutter_application_1/data/models/output_utenza_dto.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

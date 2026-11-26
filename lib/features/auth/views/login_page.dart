@@ -1,7 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 
-import 'package:flutter_application_1/api_handler.dart';
-import 'package:flutter_application_1/models/login_dto.dart';
+import 'package:flutter_application_1/data/services/api_handler.dart';
+import 'package:flutter_application_1/data/models/login_dto.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,11 +20,12 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
+  //metodo per postare a api/auth/login
   Future<void> _login() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-
+    //assegnazione a oggetto da campi del form
     final creds = LoginDto(
       email: _emailController.text.trim(),
       password: _passwordController.text,
@@ -35,9 +36,10 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
+      //chiamata post e risposta
       final response = await _apiHandler.login(creds);
 
-      if (!mounted) return;
+      if (!mounted) return; //uscita in caso di
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(response.message)));
@@ -63,11 +65,15 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  //creazione della schermata da montare
   @override
   Widget build(BuildContext context) {
+    //Scaffold = "window"
     return Scaffold(
+      //AppBar = elemento material per header di "pagina"
       appBar: AppBar(title: const Text('Login'), centerTitle: true),
       body: Padding(
+        //
         padding: const EdgeInsets.all(20),
         child: Form(
           key: _formKey,

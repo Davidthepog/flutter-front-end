@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/models/output_utenza_dto.dart';
+import 'package:flutter_application_1/data/models/output_utenza_dto.dart';
 import 'package:material_ui/material_ui.dart';
 
 class UserCard extends StatelessWidget {
