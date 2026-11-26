@@ -23,7 +23,7 @@ class _DashboardPageState extends State<DashboardPage> {
     try {
       final segnalazioniResponse = await _apiHandler.authorizedRequest(
         method: "GET",
-        endpoint: "utenze/1/segnalazioni",
+        endpoint: "utenze/1/segnalazioni?dash=true",
       );
       // print(segnalazioniResponse.statusCode);
       if (segnalazioniResponse.statusCode >= 200 &&
