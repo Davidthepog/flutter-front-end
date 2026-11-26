@@ -83,6 +83,28 @@ class ApiHandler {
     throw Exception('Refresh fallito: ${response.statusCode}');
   }
 
+  Future<void> logOut() async {
+    final refreshToken = await _auth.getRefreshToken();
+
+    if (refreshToken == null) {
+      throw Exception("Token non trovato");
+    }
+
+    final uri = Uri.parse("$baseUri/auth/logout");
+
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'refreshToken': refreshToken}),
+    );
+
+    if (response.statusCode >= 200 && response.statusCode <= 299) {
+      await _auth.deleteTokens();
+      return;
+    }
+    throw Exception('Refresh fallito: ${response.statusCode}');
+  }
+
   Future<http.Response> authorizedRequest({
     required String method,
     required String endpoint,
