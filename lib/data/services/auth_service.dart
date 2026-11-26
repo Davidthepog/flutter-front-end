@@ -5,7 +5,7 @@ class AuthService {
 
   String? _accessToken;
 
-  //Future= js promise
+  //Future= js promise/c# task
 
   //Salvataggio dei token in secureStorage
 
@@ -23,6 +23,11 @@ class AuthService {
   //async getter per refToken
   Future<String?> getRefreshToken() async {
     return await _storage.read(key: 'refreshToken');
+  }
+
+  Future<bool> hasRefreshToken() async {
+    final refTok = await getRefreshToken();
+    return refTok != null && refTok.isNotEmpty;
   }
 
   //logout/elimina token

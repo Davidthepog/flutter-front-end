@@ -20,9 +20,9 @@ class SegnalazioneOperatoreDto {
   factory SegnalazioneOperatoreDto.fromJson(Map<String, dynamic> json) {
     return SegnalazioneOperatoreDto(
       id: json['id'],
-      dataSegnalazione: json['dataSegnalazione'],
+      dataSegnalazione: DateTime.parse(json['dataSegnalazione']),
       descrizione: json['descrizione'],
-      luogo: json['id'],
+      luogo: json['luogo'],
       tipologia: json['tipologia'],
       azioniAttive: json['azioniAttive'],
       idAzioneAttiva: json['idAzioneAttiva'],

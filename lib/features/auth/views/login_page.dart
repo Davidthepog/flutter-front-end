@@ -3,6 +3,8 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_application_1/data/services/api_handler.dart';
 import 'package:flutter_application_1/data/models/login_dto.dart';
 
+import 'package:flutter_application_1/features/dashboard.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -39,7 +41,11 @@ class _LoginPageState extends State<LoginPage> {
       //chiamata post e risposta
       final response = await _apiHandler.login(creds);
 
-      if (!mounted) return; //uscita in caso di
+      if (!mounted) return; //uscita in caso di non so ancora cosa
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DashboardPage()),
+      );
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(response.message)));

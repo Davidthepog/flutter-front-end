@@ -5,9 +5,10 @@ import 'package:flutter_application_1/data/models/login_response_dto.dart';
 import 'package:flutter_application_1/data/models/output_utenza_dto.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/data/services/auth_service.dart';
+import 'package:flutter_application_1/core/config/api_config.dart';
 
 class ApiHandler {
-  final String baseUri = "http://10.0.2.2:5286/api";
+  final String baseUri = ApiConfig.baseUri;
   final AuthService _auth = AuthService();
 
   Future<List<OutputUtenzaDto>> getUserData() async {
@@ -114,7 +115,13 @@ class ApiHandler {
     }
 
     String? accessToken = _auth.accessToken;
+    bool firstTry = true;
 
+    if (accessToken == null && firstTry) {
+      await refreshTokens();
+      accessToken = _auth.accessToken;
+      firstTry = false;
+    }
     if (accessToken == null) {
       throw Exception('Utente non autenticato');
     }

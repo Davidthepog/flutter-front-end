@@ -23,6 +23,7 @@ class _DashboardPageState extends State<DashboardPage> {
         method: "GET",
         endpoint: "utenze/1/segnalazioni",
       );
+      print(segnalazioniResponse.statusCode);
       if (segnalazioniResponse.statusCode >= 200 &&
           segnalazioniResponse.statusCode <= 299) {
         final List<dynamic> datiSegnalazioni = json.decode(
